@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task_4_5</title>
+</head>
+<body>
+    <script>
+        /*Взял на себя смелость дополнить реализацию распознованием примеров (скажем '5 + 4' или '19 * 2').
+        Задачи 4 и 5 реализованы в первых пяти функциях*/
+        'use strict';
+
+        //Реализация вычислений из заданий 4 и 5
+        const custom_sum = (arg1, arg2) => Number(arg1) + Number(arg2);
+        const custom_dif = (arg1, arg2) => Number(arg1) - Number(arg2);
+        const custom_mul = (arg1, arg2) => Number(arg1) * Number(arg2);
+        const custom_div = (arg1, arg2) => Number(arg1) / Number(arg2);
+        const execute = (arg1, arg2, act) => {
+            switch (act) {
+                case '+':
+                    return custom_sum(arg1, arg2);
+                case '-':
+                    return custom_dif(arg1, arg2);
+                case '*':
+                    return custom_mul(arg1, arg2);
+                case '/':
+                    return custom_div(arg1, arg2);
+            }
+        };
+
+        //Вывод результата
+        const print_answer = (user_str, answer) => alert(`${user_str} = ${answer}`);
+
+        //Проверка корректности пользовательского ввода
+        const valid_str = my_str => re.test(my_str); //re осознанно не передается в качестве аргумента
+        const valid_act = arg => '+-*/'.includes(arg);
+        const valid_arg = arg => !Number.isNaN(arg);
+
+        //main
+        let re = /(\d+) ([+\-*\/]) (\d+)/;
+        while (true) {
+            let user_str = prompt('Введи арифметический пример в формате "x +-*/ y"');
+            if (!valid_str(user_str, re)) continue;
+            let user_str_arr = re.exec(user_str);
+            let arg1 = user_str_arr[1];
+            let act = user_str_arr[2];
+            let arg2 = user_str_arr[3];
+            if (valid_arg(arg1) && valid_arg(arg2) && valid_act(act)) {print_answer(user_str, execute(arg1, arg2, act)); break}
+            else alert('Некорректный ввод!');
+        }
+    </script>
+</body>
+</html>
