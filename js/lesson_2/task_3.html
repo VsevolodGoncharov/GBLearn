@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task_3</title>
+</head>
+<body>
+    <script>
+        arg1 = parseInt(prompt('Введи первое число'));
+        arg2 = parseInt(prompt('Введи второе число'));
+
+        const positive = arg1 => Math.sign(arg1) === 1 || Math.sign(arg1) === 0;//В качестве положительного числа принимаю в том числе 0. Как спарсить из строки -0 без дополнительных ухищрений не придумал, решил не переусложнять (0 = -0)
+        const run_dif = (arg1, arg2) => positive(arg1) && positive(arg2);
+        const run_mul = (arg1, arg2) => !positive(arg1) && !positive(arg2);
+        const run_sum = (arg1, arg2) => (positive(arg1) || positive(arg2)) && !(positive(arg1) && positive(arg2));//В JS действительно нет XOR?
+
+        const custom_sum = (arg1, arg2) => Number(arg1) + Number(arg2);
+        const custom_dif = (arg1, arg2) => Number(arg1) - Number(arg2);
+        const custom_mul = (arg1, arg2) => Number(arg1) * Number(arg2);
+
+        const valid_arg = arg => !Number.isNaN(arg);
+
+        const print_answer = (arg1, arg2, text, answer) => alert(`Числа ${arg1} и ${arg2} ${text}, результат ${answer}`);
+
+        while (true){
+            if (valid_arg(arg1) && valid_arg(arg2)) {
+                if (run_dif(arg1, arg2)) print_answer(arg1, arg2, 'положительные, выполнено вычетание', custom_dif(arg1, arg2));
+                if (run_mul(arg1, arg2)) print_answer(arg1, arg2, 'отрицательные, выполнено умножение', custom_mul(arg1, arg2));
+                if (run_sum(arg1, arg2)) print_answer(arg1, arg2, 'разных знаков, выполнено сложение', custom_sum(arg1, arg2));
+                break;
+            }
+            else alert('Некорректный ввод');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task_6</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        const getCash = () => parseInt(prompt('Введите сумму, которую хотите положить на счет'));
+        const getAnswer = cash => `На счет зачислено ${cash} рубл${getSuffix(cash)}`;
+        const getSuffix = cash => {
+            cash %= 100;
+            if ((10 <= cash) && (cash <= 19)) return 'ей';
+            cash %= 10;
+            switch (cash) {
+                case 1:
+                    return 'ь';
+                case 2:
+                case 3:
+                case 4:
+                    return 'я';
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 0:
+                    return 'ей';
+            }
+        };
+        alert(getAnswer(getCash()));
+    </script>
+</body>
+</html>
