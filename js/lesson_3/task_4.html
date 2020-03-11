@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task_4</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        const products = [
+            {
+                id: 3,
+                price: 200,
+            },
+            {
+                id: 4,
+                price: 900,
+            },
+            {
+                id: 1,
+                price: 1000,
+            },
+        ];
+
+        for (let prod of products){
+            prod.price -= prod.price / 100 * 15;
+        }
+    </script>
+</body>
+</html>
